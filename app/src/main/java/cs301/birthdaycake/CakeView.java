@@ -72,6 +72,8 @@ public class CakeView extends SurfaceView {
      * draws a candle at a specified position.  Important:  the left, bottom coordinates specify
      * the position of the bottom left corner of the candle
      */
+
+
     public void drawCandle(Canvas canvas, float left, float bottom) {
         canvas.drawRect(left, bottom - candleHeight, left + candleWidth, bottom, candlePaint);
 
