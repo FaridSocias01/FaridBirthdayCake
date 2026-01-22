@@ -3,6 +3,7 @@ package cs301.birthdaycake;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,9 +24,12 @@ public class MainActivity extends AppCompatActivity {
         // 1) Find the button in the layout
         goodbyeButton = findViewById(R.id.buttonGoodbye);
 
-        // 2) Register for click events (this is the "better" way)
-        goodbyeButton.setOnClickListener(view -> {
+        goodbyeButton.setOnClickListener(this::goodbye);
+        }
+        public void goodbye(View button) {
+
             Log.i("button", "Goodbye");
-        });
+        }
+
     }
-}
+
