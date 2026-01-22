@@ -21,12 +21,9 @@ public class MainActivity extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         setContentView(R.layout.activity_main);
 
-        // 1) Find the button in the layout
-        goodbyeButton = findViewById(R.id.buttonGoodbye);
 
-        goodbyeButton.setOnClickListener(this::goodbye);
         }
-        public void goodbye(View button) {
+        public void goodbyeX(View button) {
 
             Log.i("button", "Goodbye");
         }
