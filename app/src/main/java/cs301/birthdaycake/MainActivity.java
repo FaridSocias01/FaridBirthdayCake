@@ -9,7 +9,6 @@ import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 
 
-
 public class MainActivity extends AppCompatActivity {
 
 
@@ -21,6 +20,12 @@ public class MainActivity extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         setContentView(R.layout.activity_main);
 
+        CakeView cakeView = findViewById(R.id.cakeview);
+
+        // create controller
+        CakeController controller = new CakeController(cakeView);
+
+
         // 1) Find the button in the layout
         goodbyeButton = findViewById(R.id.buttonGoodbye);
 
@@ -30,6 +35,9 @@ public class MainActivity extends AppCompatActivity {
 
             Log.i("button", "Goodbye");
         }
+
+
+
 
     }
 

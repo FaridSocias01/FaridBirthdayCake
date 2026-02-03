@@ -16,7 +16,9 @@ public class CakeView extends SurfaceView {
     Paint outerFlamePaint = new Paint();
     Paint innerFlamePaint = new Paint();
     Paint wickPaint = new Paint();
-    //This boolean is to make sure the frosting works when used
+
+    //Checkpoint 1 Lab 3
+    private CakeModel model;
 
 
     /* These constants define the dimensions of the cake.  While defining constants for things
@@ -45,6 +47,9 @@ public class CakeView extends SurfaceView {
     public CakeView(Context context, AttributeSet attrs) {
         super(context, attrs);
 
+        //checkpoint 1:
+        model = new CakeModel();
+
         //This is essential or your onDraw method won't get called
         setWillNotDraw(false);
 
@@ -63,10 +68,12 @@ public class CakeView extends SurfaceView {
         wickPaint.setStyle(Paint.Style.FILL);
 
         setBackgroundColor(Color.WHITE);  //better than black default
-
-
-
     }
+
+    public CakeModel getCakeModel() {
+        return model;
+    }
+
 
     /**
      * draws a candle at a specified position.  Important:  the left, bottom coordinates specify
@@ -92,8 +99,6 @@ public class CakeView extends SurfaceView {
         canvas.drawRect(wickLeft, wickTop, wickLeft + wickWidth, wickTop + wickHeight, wickPaint);
 
     }
-
-
 
     /**
      * onDraw is like "paint" in a regular Java program.  While a Canvas is
@@ -132,6 +137,7 @@ public class CakeView extends SurfaceView {
         drawCandle(canvas, cakeLeft + cakeWidth/3 - candleWidth/2, cakeTop);
 
     }//onDraw
+
 
 }//class CakeView
 
