@@ -28,9 +28,14 @@ public class MainActivity extends AppCompatActivity {
 
         // 1) Find the button in the layout
         goodbyeButton = findViewById(R.id.buttonGoodbye);
-
         goodbyeButton.setOnClickListener(this::goodbye);
+
+        //Checkpoint 1 Lab 3
+        View blowOutBtn = findViewById(R.id.buttonBlowOut);
+        blowOutBtn.setOnClickListener(controller);
         }
+
+
         public void goodbye(View button) {
 
             Log.i("button", "Goodbye");
