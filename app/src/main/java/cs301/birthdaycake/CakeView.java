@@ -47,7 +47,8 @@ public class CakeView extends SurfaceView {
     public CakeView(Context context, AttributeSet attrs) {
         super(context, attrs);
 
-        //checkpoint 1:
+        //~~~ Checkpoint 1 Lab 3 ~~~
+
         model = new CakeModel();
 
         //This is essential or your onDraw method won't get called
@@ -81,6 +82,12 @@ public class CakeView extends SurfaceView {
 
 
     public void drawCandle(Canvas canvas, float left, float bottom) {
+
+        //~~~ Checkpoint 3 Lab 3 ~~~
+        // If the model says candles are off then it stops this method
+
+        if (!model.hasCandles) return;
+
         canvas.drawRect(left, bottom - candleHeight, left + candleWidth, bottom, candlePaint);
 
         //New : draw the wick (before anything so it stays when the flames are blow)
@@ -97,8 +104,7 @@ public class CakeView extends SurfaceView {
             canvas.drawCircle(flameCenterX, flameCenterY, innerFlameRadius, innerFlamePaint);
         }
 
-        /* This code was for lab 2 but  had to change it a bit
-
+        /* This code was for lab 2 but had to change it a bit
         //draw the outer flame
         float flameCenterX = left + candleWidth / 2;
         float flameCenterY = bottom - wickHeight - candleHeight - outerFlameRadius / 3;
@@ -107,7 +113,6 @@ public class CakeView extends SurfaceView {
         //draw the inner flame
         flameCenterY += outerFlameRadius / 3;
         canvas.drawCircle(flameCenterX, flameCenterY, innerFlameRadius, innerFlamePaint);
-
          */
     }
 
@@ -143,10 +148,38 @@ public class CakeView extends SurfaceView {
         //Then a second cake layer
         canvas.drawRect(cakeLeft, top, cakeLeft + cakeWidth, bottom, cakePaint);
 
-        //Now two candles in the cake
+
+        //~~~ Checkpoint 4 Lab 3 ~~~
+
+
+        // Draw candles based on model.numCandles
+        int c = model.numCandles;
+
+        // Keep candles fully on cake: use inner boundaries that account for candle width
+        float cakeLeftFloat = cakeLeft;
+        float cakeRightFloat = cakeLeft + cakeWidth;
+
+        // Those two are inside the cake only making limits so the candles are not in the edge or going out of the cake
+        float insideCakeLeftFloat = cakeLeftFloat;
+        float insideCakeRightFloat = cakeRightFloat - candleWidth;
+
+        // Gives the width of the good zone where candle left edges can go
+        float insideCakeWidthFloat = insideCakeRightFloat - insideCakeLeftFloat;
+
+        // Place candles at fractions i/(n+1) across insideCakeWidthFloat
+        for (int i = 1; i <= c; i++) {
+            //this is important because this will create the spaces between candles and will look like gaps
+            // c + 1 because will make an extra gap and make it never in the edge of the cake
+            float x = insideCakeLeftFloat + (i * insideCakeWidthFloat) / (c + 1);
+            drawCandle(canvas, x, cakeTop);
+        }
+
+/*
+        //Now two candles in the cake ---> I don't need this anymore because I will change the candles number with seekbar
+
         drawCandle(canvas, cakeLeft + cakeWidth/2 - candleWidth/2, cakeTop);
         drawCandle(canvas, cakeLeft + cakeWidth/3 - candleWidth/2, cakeTop);
-
+*/
     }//onDraw
 
 
